@@ -1,0 +1,13 @@
+.Loan {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.Loan-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Loan-item {
+  margin: 0.5rem;
+}

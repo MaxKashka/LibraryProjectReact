@@ -1,0 +1,10 @@
+.Book {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.Book-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
