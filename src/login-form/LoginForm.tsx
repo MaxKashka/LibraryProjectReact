@@ -5,14 +5,23 @@ import { Formik } from 'formik';
 import { useCallback, useMemo } from 'react';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useApi } from '../api/dto/ApiProvider';
 
 function LoginForm() {
   const navigate = useNavigate();
+  const apiClient = useApi();
+
   const onSubmit = useCallback(
     (values: { username: string; password: string }, formik: any) => {
-      navigate('/home');
+      apiClient.login(values).then((response) => {
+        if (response?.statusCode === 200) {
+          navigate('/home');
+        } else {
+          formik.setFieldError('username', 'Invalid data');
+        }
+      });
     },
-    [],
+    [apiClient, navigate],
   );
   const validationSchema = useMemo(
     () =>

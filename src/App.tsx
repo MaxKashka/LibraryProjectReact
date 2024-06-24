@@ -4,6 +4,7 @@ import HomePage from './home-page/HomePage';
 import LoginForm from './login-form/LoginForm';
 import BookList from './login-form/Book';
 import LoansList from './login-form/Loan';
+import ApiProvider from './api/dto/ApiProvider';
 
 const bookData = [
   { id: 1, title: 'Ab', author: '1234' },
@@ -38,13 +39,15 @@ const loansData = [
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/home" element={<HomePage />}>
-        <Route path="1" element={<BookList books={bookData} />} />
-        <Route path="2" element={<LoansList loans={loansData} />} />
-      </Route>
-      <Route path="*" element={<h1>404 Not Found</h1>} />
+      <ApiProvider>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/home" element={<HomePage />}>
+          <Route path="1" element={<BookList books={bookData} />} />
+          <Route path="2" element={<LoansList loans={loansData} />} />
+        </Route>
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </ApiProvider>
     </Routes>
   );
 }
